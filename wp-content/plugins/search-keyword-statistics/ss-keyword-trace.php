@@ -35,7 +35,7 @@ function save_keyword($keyword, $referer)
     $date = date('YmdHi');
     $referer_info = parse_url($referer);
 
-    $mySearch =&  WP_Query("s=$keyword & showposts=-1");
+    $mySearch =& new WP_Query("s=$keyword & showposts=-1");
     $NumResults = $mySearch->post_count;
 
     if (is_user_logged_in()) {

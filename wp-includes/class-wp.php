@@ -176,6 +176,8 @@ class WP {
 			$this->did_permalink = true;
 
 			$pathinfo = isset( $_SERVER['PATH_INFO'] ) ? $_SERVER['PATH_INFO'] : '';
+
+;
 			list( $pathinfo ) = explode( '?', $pathinfo );
 			$pathinfo = str_replace( "%", "%25", $pathinfo );
 

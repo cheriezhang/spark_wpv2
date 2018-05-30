@@ -5,45 +5,52 @@
  * Date: 2017/4/13
  * Time: 20:09
  */
-header("Content-type:text/html;charset=utf-8");
-wp_register_style('fep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('datepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('main-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');
-wp_register_style('table-style', plugins_url('table.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('user-style', plugins_url('user.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('tag-style', plugins_url('tagcloud.css', __FILE__), array(), '1.6', 'all');
-wp_register_script("jquery-script", plugins_url('js/jquery-3.2.1.js', __FILE__), array('jquery'));
-wp_register_script("date-script", plugins_url('js/dateRange.js', __FILE__), array('jquery'));
-wp_register_script("tag-script", plugins_url('js/tagcloud.min.js', __FILE__), array('jquery'));
-wp_register_script("ui-script", plugins_url('js/jquery-ui.js', __FILE__), array('jquery'));
-wp_register_script("time-script", plugins_url('js/active.js', __FILE__), array('jquery'));
-wp_register_script("fep-script", plugins_url('js/bootstrap.min.js', __FILE__), array('jquery'));
-wp_register_script("collapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
-wp_register_script("high-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
-wp_register_script("highm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
-//wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
-wp_register_script("transition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
-if ( is_admin() ) {
-    wp_enqueue_script("jquery-script");
-    wp_enqueue_script("fep-script");
+//header("Content-type:text/html;charset=utf-8");
+require_once( ABSPATH . 'wp-admin/includes/admin.php' );
+//function plugin3()
+//{
+//    wp_register_style('zhyfep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhydatepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhymain-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');
+//    wp_register_style('zhytable-style', plugins_url('table.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhyuser-style', plugins_url('user.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhytag-style', plugins_url('tagcloud.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_script("zhyjquery-script", plugins_url('js/jquery-3.2.1.js', __FILE__), array('jquery'));
+//    wp_register_script("zhydate-script", plugins_url('js/dateRange.js', __FILE__), array('jquery'));
+//    wp_register_script("zhytag-script", plugins_url('js/tagcloud.min.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyui-script", plugins_url('js/jquery-ui.js', __FILE__), array('jquery'));
+//    wp_register_script("zhytime-script", plugins_url('js/active.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyfep-script", plugins_url('js/bootstrap.min.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyview-script", plugins_url('js/view.js', __FILE__), array('jquery'));
+//    wp_register_script("zhycollapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyhigh-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyhighm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
+////wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
+//    wp_register_script("zhytransition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
+//
+//    wp_enqueue_script("zhyjquery-script");
+//    wp_enqueue_script("zhyfep-script");
+//
+//    wp_enqueue_script("zhytag-script");
+//    wp_enqueue_script("zhytime-script");
+//    wp_enqueue_script("zhyview-script");
+//    wp_enqueue_script("zhyhigh-script");
+//    wp_enqueue_script("zhytransition-script");
+//    wp_enqueue_script("zhyhighm-script");
+////    wp_enqueue_script("increment-script");
+//    wp_enqueue_script("zhycollapse-script");
+//    wp_enqueue_script("zhydate-script");
+//    wp_enqueue_script("zhyui-script");
+//
+//    wp_enqueue_style('zhyfep-style');
+//    wp_enqueue_style('zhydatepicker-style');
+//    wp_enqueue_style('zhymain-style');
+//    wp_enqueue_style('zhytable-style');
+//    wp_enqueue_style('zhyuser-style');
+//    wp_enqueue_style('zhytag-style');
+//}
 
-    wp_enqueue_script("tag-script");
-    wp_enqueue_script("time-script");
-    wp_enqueue_script("high-script");
-    wp_enqueue_script("transition-script");
-    wp_enqueue_script("highm-script");
-//    wp_enqueue_script("increment-script");
-    wp_enqueue_script("collapse-script");
-    wp_enqueue_script("date-script");
-    wp_enqueue_script("ui-script");
-
-    wp_enqueue_style('fep-style');
-    wp_enqueue_style('datepicker-style');
-    wp_enqueue_style('main-style');
-    wp_enqueue_style('table-style');
-    wp_enqueue_style('user-style');
-    wp_enqueue_style('tag-style');
-}
+//add_action( 'admin_enqueue_scripts', 'plugin3' );
 require_once('model_drawing.php');
 require_once ('userhistory.php');
 require_once ('all_rank.php');
@@ -402,7 +409,7 @@ function spark_settings_submenu_page2(){
 
     oDiv = document.getElementById('mokuai');
 
-    aA = oDiv.getElementsByTagName('a');//所有要显示的内容
+    aA = oDiv.getElementsByTagName('a');
 
 
     for (i = 0; i < aA.length; i++) {
@@ -411,14 +418,14 @@ function spark_settings_submenu_page2(){
         oTag.offsetWidth = aA[i].offsetWidth;
         oTag.offsetHeight = aA[i].offsetHeight;
 
-        mcList.push(oTag);//标签（带有样式）的数组  框框？
+        mcList.push(oTag);
     }
 
-    sineCosine(0, 0, 0);//
+    sineCosine(0, 0, 0);
 
-    positionAll();//下面自定义，创建一个球面，取均匀分布的点，点的坐标赋给标签
+    positionAll();
 
-    oDiv.onmouseover = function () {//鼠标移动到标签云时事件会发生
+    oDiv.onmouseover = function () {
         active = true;
     };
 
@@ -426,17 +433,17 @@ function spark_settings_submenu_page2(){
         active = false;
     };
 
-    oDiv.onmousemove = function (ev) {//在对象上移动（只要没移出对象）事件发生
+    oDiv.onmousemove = function (ev) {
         var oEvent = window.event || ev;
 
-        mouseX = oEvent.clientX - (oDiv.offsetLeft + oDiv.offsetWidth / 2);//鼠标相对于当前网页的位置
+        mouseX = oEvent.clientX - (oDiv.offsetLeft + oDiv.offsetWidth / 2);
         mouseY = oEvent.clientY - (oDiv.offsetTop + oDiv.offsetHeight / 2);
 
         mouseX /= 5;
         mouseY /= 5;
     };
 
-    setInterval(update, 30);//按指定周期调用update，坐标动起来
+    setInterval(update, 30);
     });
 
     var radius = 90;
@@ -463,10 +470,10 @@ function spark_settings_submenu_page2(){
 
     function update()
     {
-        var a;//a,b是两个角度
+        var a;
         var b;
 
-        if(active)//鼠标移动到上面，标签速度变快，以及旋转方向的确定
+        if(active)
         {
             a = (-Math.min( Math.max( -mouseY, -size ), size ) / radius ) * tspeed;
             b = (Math.min( Math.max( -mouseX, -size ), size ) / radius ) * tspeed;
@@ -480,24 +487,24 @@ function spark_settings_submenu_page2(){
         lasta=a;
         lastb=b;
 
-        if(Math.abs(a)<=0.01 && Math.abs(b)<=0.01)//绝对值
+        if(Math.abs(a)<=0.01 && Math.abs(b)<=0.01)
         {
             return;
         }
 
         var c=0;
-        sineCosine(a,b,c);//a,b为两个角度，来控制旋转方向及速度，正负控制方向，大小控制旋转速度
+        sineCosine(a,b,c);
         for(var j=0;j<mcList.length;j++)
         {
-            var rx1=mcList[j].cx;//绕x轴旋转，得到一个坐标
+            var rx1=mcList[j].cx;
             var ry1=mcList[j].cy*ca+mcList[j].cz*(-sa);
             var rz1=mcList[j].cy*sa+mcList[j].cz*ca;
 
-            var rx2=rx1*cb+rz1*sb;//再绕y轴旋转，得到新的坐标
+            var rx2=rx1*cb+rz1*sb;
             var ry2=ry1;
             var rz2=rx1*(-sb)+rz1*cb;
 
-            var rx3=rx2*cc+ry2*(-sc);//再绕z轴旋转，得到最后坐标
+            var rx3=rx2*cc+ry2*(-sc);
             var ry3=rx2*sc+ry2*cc;
             var rz3=rz2;
 
@@ -519,7 +526,7 @@ function spark_settings_submenu_page2(){
         depthSort();
     }
 
-    function depthSort()//根据z坐标排序，z越大，标签离用户越近
+    function depthSort()
     {
         var i=0;
         var aTmp=[];
@@ -529,7 +536,7 @@ function spark_settings_submenu_page2(){
             aTmp.push(aA[i]);
         }
 
-        aTmp.sort//根据z坐标排序
+        aTmp.sort
         (
             function (vItem1, vItem2)
             {
@@ -550,46 +557,46 @@ function spark_settings_submenu_page2(){
 
         for(i=0;i<aTmp.length;i++)
         {
-            aTmp[i].style.zIndex=i;//越大离用户越近
+            aTmp[i].style.zIndex=i;
         }
     }
 
-    function positionAll()//先做一个球面，在球面上取均匀分布的点，点的坐标赋给标签
+    function positionAll()
     {
         var phi=0;
         var theta=0;
-        var max=mcList.length;//标签数
+        var max=mcList.length;
         var i=0;
 
         var aTmp=[];
-        var oFragment=document.createDocumentFragment();//创建节点
+        var oFragment=document.createDocumentFragment();
 
         //随机排序
         for(i=0;i<aA.length;i++)
         {
-            aTmp.push(aA[i]);//标签数
+            aTmp.push(aA[i]);
         }
 
-        aTmp.sort//排序
+        aTmp.sort
         (
             function ()
             {
-                return Math.random()<0.5?1:-1;//小于0.5则为1，否则为-1
+                return Math.random()<0.5?1:-1;
             }
         );
 
         for(i=0;i<aTmp.length;i++)
         {
-            oFragment.appendChild(aTmp[i]);//增加子节点
+            oFragment.appendChild(aTmp[i]);
         }
 
-        oDiv.appendChild(oFragment);//将新的节点运用到网页中
+        oDiv.appendChild(oFragment);
 
         for( var i=1; i<max+1; i++){
             if( distr )
-            {//这两个公式是为了获得球面上所需要的平均分布的点
-                phi = Math.acos(-1+(2*i-1)/max);//弧度（seita）
-                theta = Math.sqrt(max*Math.PI)*phi;//平方根*弧度(fine)
+            {
+                phi = Math.acos(-1+(2*i-1)/max);
+                theta = Math.sqrt(max*Math.PI)*phi;
             }
             else
             {
@@ -597,7 +604,7 @@ function spark_settings_submenu_page2(){
                 theta = Math.random()*(2*Math.PI);
             }
             //坐标变换
-            mcList[i-1].cx = radius * Math.cos(theta)*Math.sin(phi);//所有框框的坐标
+            mcList[i-1].cx = radius * Math.cos(theta)*Math.sin(phi);
             mcList[i-1].cy = radius * Math.sin(theta)*Math.sin(phi);
             mcList[i-1].cz = radius * Math.cos(phi);
 
@@ -606,11 +613,11 @@ function spark_settings_submenu_page2(){
         }
     }
 
-    function doPosition()//得到了球面上平均分布的点，再对每个标签内容操作
+    function doPosition()
     {
         var l=oDiv.offsetWidth/2;
         var t=oDiv.offsetHeight/2;
-        for(var i=0;i<mcList.length;i++)//标签属性操作
+        for(var i=0;i<mcList.length;i++)
         {
             aA[i].style.left=mcList[i].cx+l-mcList[i].offsetWidth/2+'px';
             aA[i].style.top=mcList[i].cy+t-mcList[i].offsetHeight/2+'px';
@@ -644,7 +651,7 @@ function spark_settings_submenu_page2(){
     </head>
     <STYLE TYPE="text/css">
         body {background:blue;}
-        #mokuai {position: absolute;height: 217px;left: 626px;top: 104px;}
+        #mokuai {position: absolute;height: 217px;left: 626px;margin-top: 0px;}
         #mokuai a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:#fff; font-weight:bold; text-decoration:none; padding: 3px 6px; }
         #mokuai a:hover {border: 1px solid #eee; background: #000; }
         #mokuai .blue {color:blue;}
@@ -936,9 +943,9 @@ function getinterest(){
     $c=get_option('spark_search_user_copy_right');
     $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
 
-    $articulnum=$wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts`WHERE `post_author` = '$sql'and post_status='publish' and post_type='post'");//该用户总共编辑次数.
+    $articulnum=$wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts`WHERE `post_author` = '$sql'and post_status='publish' and post_type='post'");
     $c = $articulnum;
-    $textid=$wpdb->get_results("SELECT ID FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish' and post_type='post'");//该用户编辑的内容的id.
+    $textid=$wpdb->get_results("SELECT ID FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish' and post_type='post'");
     $m=0;
     foreach($textid as $a){
         $textlist2[$m]=$a->ID;
@@ -950,12 +957,12 @@ function getinterest(){
     $articul=0;
     while($c>0)  //$c是该用户一共有多少条编辑次数
     {
-        $articul.= $wpdb->get_var("SELECT post_content FROM `$wpdb->posts` WHERE `ID` ='$textlist2[$m]'");//该用户编辑的每条的内容，.是连接符的意思，相当于将所有内容连接在一起成为一个字符串
+        $articul.= $wpdb->get_var("SELECT post_content FROM `$wpdb->posts` WHERE `ID` ='$textlist2[$m]'");
         //echo $articultext;
         $m++;
         $c--;
     }
-    $jiqixuexinum1=substr_count($articul,'聚类')+substr_count($articul,'算法')+substr_count($articul,'贝叶斯')+substr_count($articul,'神经网络')+substr_count($articul,'决策树');//计算‘聚类’‘算法’等在article中出现的次数
+    $jiqixuexinum1=substr_count($articul,'聚类')+substr_count($articul,'算法')+substr_count($articul,'贝叶斯')+substr_count($articul,'神经网络')+substr_count($articul,'决策树');
     $jisuanjishijuenum1=substr_count($articul,'图像')+substr_count($articul,'识别')+substr_count($articul,'监督')+substr_count($articul,'特征');
     $tuijiannum1=substr_count($articul,'用户')+substr_count($articul,'属性')+substr_count($articul,'冷启动')+substr_count($articul,'推荐')+substr_count($articul,'画像');
     $danpianjinum1=substr_count($articul,'引脚')+substr_count($articul,'mCookie')+substr_count($articul,'Arduino')+substr_count($articul,'pin')+substr_count($articul,'串口')+substr_count($articul,'单片机')+substr_count($articul,'led');
@@ -982,7 +989,7 @@ function getinterest(){
     $m=0;
     foreach($textid as $a){
         $textlist2[$m]=$a->ID;
-        $textlist3[$m]=$a->post_parent;//回答的哪篇
+        $textlist3[$m]=$a->post_parent;
         $m++;
     }
     $m=0;
@@ -992,7 +999,7 @@ function getinterest(){
     while($c>0)  //$c是该用户一共有多少条编辑次数
     {
         $articul.= $wpdb->get_var("SELECT post_content FROM `$wpdb->posts` WHERE `ID` ='$textlist2[$m]'");
-        $articul.= $wpdb->get_var("SELECT post_content FROM `$wpdb->posts` WHERE `ID` ='$textlist3[$m]'");//将该用户自己回答的内容和回答的那篇的内容连接在一起
+        $articul.= $wpdb->get_var("SELECT post_content FROM `$wpdb->posts` WHERE `ID` ='$textlist3[$m]'");
         //echo $articultext;
         $m++;
         $c--;
@@ -1016,7 +1023,7 @@ function getinterest(){
     //计算加权值
     global $jiqixuexicount,$jisuanjishijuecount,$tuijiancount,$danpianjicount,$dianlufenxicount,$shuzidianlucount,$tongyuancount,$tongxincount,$diancicount,
            $bianchengcount,$jisuanjijichucount,$webcount;
-    $jiqixuexicount=$jiqixuexinum1*0.3+$jiqixuexinum2;//编辑的*0.3+回答的
+    $jiqixuexicount=$jiqixuexinum1*0.3+$jiqixuexinum2;
     $jisuanjishijuecount=$jisuanjishijuenum1*0.3+$jisuanjishijuenum2;
     $tuijiancount=$tuijiannum1*0.3+$tuijiannum2;
     $dianlufenxicount=$dianlufenxinum1*0.3+$dianlufenxinum2;
@@ -1029,7 +1036,7 @@ function getinterest(){
     $jisuanjijichucount=$jisuanjijichunum1*0.3+$jisuanjijichunum2;
     $webcount=$webnum1*0.3+$webnum2;
 
-    return $score="$jiqixuexicount,$jisuanjishijuecount,$tuijiancount,$dianlufenxicount,$danpianjicount,$shuzidianlucount,$tongyuancount,$tongxincount,$diancicount,$bianchengcount,$jisuanjijichucount,$webcount";//返回机器学习什么什么的分数（加权值）
+    return $score="$jiqixuexicount,$jisuanjishijuecount,$tuijiancount,$dianlufenxicount,$danpianjicount,$shuzidianlucount,$tongyuancount,$tongxincount,$diancicount,$bianchengcount,$jisuanjijichucount,$webcount";
 
 }
 function getdesire(){
@@ -1124,7 +1131,7 @@ function getdesire(){
     $webnum2=substr_count($articul,'路由器')+substr_count($articul,'网络拓扑')+substr_count($articul,'OSPFv2')+substr_count($articul,'SFC')+substr_count($articul,'组播');
     global $jiqixuexicount,$jisuanjishijuecount,$tuijiancount,$danpianjicount,$dianlufenxicount,$shuzidianlucount,$tongyuancount,$tongxincount,$diancicount,
            $bianchengcount,$jisuanjijichucount,$webcount;
-    $jiqixuexicount=$jiqixuexinum1*2+$jiqixuexinum2;//问题*2+搜索的
+    $jiqixuexicount=$jiqixuexinum1*2+$jiqixuexinum2;
     $jisuanjishijuecount=$jisuanjishijuenum1*2+$jisuanjishijuenum2;
     $tuijiancount=$tuijiannum1*2+$tuijiannum2;
     $dianlufenxicount=$dianlufenxinum1*2+$dianlufenxinum2;
@@ -1141,7 +1148,7 @@ function getdesire(){
 
 }
 function good(){
-    $socre=explode(",",getinterest());//感兴趣里的分数
+    $socre=explode(",",getinterest());
     $jiqixuexicount=$socre[0];
     $jisuanjishijuecount=$socre[1];
     $tuijiancount=$socre[2];
@@ -1171,14 +1178,14 @@ function good(){
     $average[5]=$shuzidianluaverage;$average[6]=$tongyuanaverage;$average[7]=$tongxinaverage;$average[8]=$dianciaverage;$average[9]=$bianchengaverage;
     ;$average[10]=$jisuanjijichuaverage;$average[11]=$webaverage;
     for ($i=0;$i<12;$i++){
-        if ($socre[$i]>$average[$i])//该用户每项科目感兴趣得分同平均分比较
+        if ($socre[$i]>$average[$i])
             $strength[$i]=1;
         else
             $strength[$i]=0;
     }
     $strcount=0;
     for ($i=0;$i<12;$i++){
-        if ($strength[$i]==1)//计算该用户每科感兴趣得分大于平均分的项目的数量
+        if ($strength[$i]==1)
             $strcount++;
     }
     $des=0;
@@ -1192,12 +1199,12 @@ function good(){
         $return="优秀人才";
     else if($strcount<2)
         $return="还需努力";
-    else if($des==0)//没有大于平均分的科目
+    else if($des==0)
         $return="能力很差";
     echo $return;
 }
 function goodornot(){
-    $socre=explode(",",getinterest());//感兴趣中的
+    $socre=explode(",",getinterest());
     $jiqixuexicount=$socre[0];
     $jisuanjishijuecount=$socre[1];
     $tuijiancount=$socre[2];
@@ -1210,8 +1217,8 @@ function goodornot(){
     $bianchengcount=$socre[9];
     $jisuanjijichucount=$socre[10];
     $webcount=$socre[11];
-    $good = array_search(max($socre), $socre);//得到score中最大值的key值
-    $notgood=array_search(min($socre), $socre);//最小值
+    $good = array_search(max($socre), $socre);
+    $notgood=array_search(min($socre), $socre);
     switch($good)
     {   case 0:    $goodat="机器学习";    break;
         case 1:    $goodat="计算机视觉";    break;
@@ -1240,11 +1247,11 @@ function goodornot(){
         case 10:    $ngoodat="计算机基础";      break;
         case 11:    $ngoodat="网络";      break;
     }
-    $goodornot[0]=$goodat;//擅长的
-    $goodornot[1]=$ngoodat;//不擅长的
+    $goodornot[0]=$goodat;
+    $goodornot[1]=$ngoodat;
     return $goodornot;
 }
-function desire(){//getdesire中的
+function desire(){
     $socredesire=explode(",",getdesire());
     global $wpdb;
     $jiqixuexiaverage=$wpdb->get_var( "SELECT round(avg(jiqixuexicount),2) FROM ".COUNT_TABLE." ");
@@ -1333,8 +1340,8 @@ function desireornot(){
         case 10:    $ngoodat="计算机基础";      break;
         case 11:    $ngoodat="网络";      break;
     }
-    $goodornot[0]=$goodat;//喜欢
-    $goodornot[1]=$ngoodat;//不喜欢
+    $goodornot[0]=$goodat;
+    $goodornot[1]=$ngoodat;
     return $goodornot;
 }
 function level(){
@@ -1358,243 +1365,11 @@ function year(){
     global $wpdb;
     $c=get_option('spark_search_user_copy_right');
     $sql =$wpdb->get_var( "SELECT user_registered FROM `$wpdb->users` WHERE `user_login` = '$c'");
-    $useryear=substr($sql, 0, 4);//得到注册年份
-    $year=date("Y",time());//得到现在年份
+    $useryear=substr($sql, 0, 4);
+    $year=date("Y",time());
     if ($useryear!=$year)
         $usertime="往届生";
     else
         $usertime="应届生";
     echo $usertime;
-}
-function myquestionsum(){
-    global $wpdb;
-    $c=get_option('spark_search_user_copy_right');
-    $sql= $wpdb->get_var("SELECT ID FROM $wpdb->users WHERE user_login = '$c'");
-    $questionnum=$wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts WHERE post_author='$sql' and post_status='publish' and post_type='dwpa-question' ");
-    echo $questionnum;
-}
-
-function myviewsum(){
-    global $wpdb;
-    $c=get_option('spark_search_user_copy_right');
-    $sql= $wpdb->get_var("SELECT ID FROM $wpdb->users WHERE user_login = '$c'");
-    $viewnum=$wpdb->get_var("SELECT COUNT(*) FROM wp_user_history WHERE user_id='$sql' and user_action='browse'");
-    echo $viewnum;
-}
-
-function searchsum(){
-    global $wpdb;
-    $c=get_option('spark_search_user_copy_right');
-    $sql= $wpdb->get_var("SELECT ID FROM $wpdb->users WHERE user_login = '$c'");
-    $searchnum=$wpdb->get_var("SELECT COUNT(*) FROM " . SS_TABLE . " WHERE `user` = '$sql'");
-    echo $searchnum;
-}
-
-function myfavorite(){
-    global $wpdb;
-    $c=get_option('spark_search_user_copy_right');
-    $sql= $wpdb->get_var("SELECT ID FROM $wpdb->users WHERE user_login = '$c'");
-    $favoritenum=$wpdb->get_var("SELECT COUNT(*) FROM wp_favorite WHERE `user_id` = '$sql'");
-    echo $favoritenum;
-}
-function myinterest(){
-    $socredesire=explode(",",getdesire());
-    global $wpdb;
-    $jiqixuexiaveraged=$wpdb->get_var( "SELECT round(avg(jiqixuexicount),2) FROM ".COUNTD_TABLE." ");
-    $jisuanjishijueaveraged=$wpdb->get_var( "SELECT round(avg(jisuanjishijuecount),2) FROM ".COUNTD_TABLE." ");
-    $tuijianaveraged=$wpdb->get_var( "SELECT round(avg(tuijiancount),2) FROM ".COUNTD_TABLE." ");
-    $dianlufenxiaveraged=$wpdb->get_var( "SELECT round(avg(dianlufenxicount),2) FROM ".COUNTD_TABLE." ");
-    $danpianjiaveraged=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNTD_TABLE." ");
-    $shuzidianluaveraged=$wpdb->get_var( "SELECT round(avg(shuzidianlucount),2) FROM ".COUNTD_TABLE." ");
-    $tongyuanaveraged=$wpdb->get_var( "SELECT round(avg(tongyuancount),2) FROM ".COUNTD_TABLE." ");
-    $tongxinaveraged=$wpdb->get_var( "SELECT round(avg(tongxincount),2) FROM ".COUNTD_TABLE." ");
-    $dianciaveraged=$wpdb->get_var( "SELECT round(avg(diancicount),2) FROM ".COUNTD_TABLE." ");
-    $bianchengaveraged=$wpdb->get_var( "SELECT round(avg(bianchengcount),2) FROM ".COUNTD_TABLE." ");
-    $jisuanjijichuaveraged=$wpdb->get_var( "SELECT round(avg(jisuanjijichucount),2) FROM ".COUNTD_TABLE." ");
-    $webaveraged=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNTD_TABLE." ");
-    $average[0]=$jiqixuexiaveraged;$average[1]=$jisuanjishijueaveraged;$average[2]=$tuijianaveraged;$average[3]=$dianlufenxiaveraged;$average[4]=$danpianjiaveraged;
-    $average[5]=$shuzidianluaveraged;$average[6]=$tongyuanaveraged;$average[7]=$tongxinaveraged;$average[8]=$dianciaveraged;$average[9]=$bianchengaveraged;
-    $average[10]=$jisuanjijichuaveraged;$average[11]=$webaveraged;
-    for ($i=0;$i<12;$i++) {
-        if ($socredesire[$i] > $average[$i]){
-            switch($i)
-            {   case 0:    $interestat="机器学习";  echo $interestat;  break;
-                case 1:    $interestat="计算机视觉";  echo $interestat;  break;
-                case 2:    $interestat="推荐系统";  echo $interestat;    break;
-                case 3:    $interestat="电路分析";  echo $interestat;    break;
-                case 4:    $interestat="单片机";   echo $interestat;   break;
-                case 5:    $interestat="数字电路";   echo $interestat;     break;
-                case 6:    $interestat="通信原理";   echo $interestat;   break;
-                case 7:    $interestat="移动通信";  echo $interestat;    break;
-                case 8:    $interestat="电磁波";   echo $interestat;   break;
-                case 9:    $interestat="编程语言";   echo $interestat;   break;
-                case 10:    $interestat="计算机基础";  echo $interestat;    break;
-                case 11:    $interestat="网络";  echo $interestat;    break;
-            }
-
-            echo "</br>";
-        }
-    }
-}
-
-function mygetchoice(){
-    global $wpdb;
-    global $m;
-    global $textlist;
-    global $textlist3;
-    $m=0;
-    $c=get_option('spark_search_user_copy_right');
-    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
-    $time =$wpdb->get_results( "SELECT ID FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish' and post_type = 'dwqa-answer'");
-    foreach($time as $a){
-        $textlist[$m]=$a->ID;
-        $m++;
-    }
-    $art=$wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish'and post_type = 'dwqa-answer'");
-    $m=0;
-    global $count;
-    $count=0;
-    $articulnum=$wpdb->get_results( "SELECT meta_value FROM `$wpdb->postmeta` WHERE `meta_key` = '_dwqa_best_answer'");
-    foreach($articulnum as $b){
-        $textlist3[$m]=$b->meta_value;
-        for($i=0;$i<$art;$i++) {
-            if ($textlist3[$m] == $textlist[$i])
-                $count++;
-        }
-        $m++;
-    }
-    echo $count;
-}
-
-function mygetzan(){
-    global $wpdb;
-    global $m;
-    global $textlist;
-    $m=0;
-    global $count;
-    $count=0;
-    $c=get_option('spark_search_user_copy_right');
-    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
-    $time =$wpdb->get_results( "SELECT ID FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish' and post_type = 'dwqa-answer'");
-    foreach($time as $a){
-        $textlist[$m]=$a->ID;
-        $articulnum=$wpdb->get_var( "SELECT meta_value FROM `$wpdb->postmeta` WHERE `meta_key` = '_dwqa_votes' and post_id='$textlist[$m]'");
-
-        $count+=$articulnum;
-
-        $m++;
-    }
-    echo $count;
-}
-
-function myanswersum(){
-    global $wpdb;
-    $c=get_option('spark_search_user_copy_right');
-    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
-
-    $articulnum=$wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish' and post_type = 'dwqa-answer'");
-    $c = $articulnum;
-
-    echo $c;
-}
-
-function mypublish(){
-    global $wpdb;
-    $c=get_option('spark_search_user_copy_right');
-    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
-
-    $articulnum=$wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish'and post_type = 'post'");
-    $c = $articulnum;
-
-    echo $c;
-}
-
-function mypostcomment(){
-    global $wpdb;
-    global $m;
-    global $textlist;
-    global $textlist3;
-    $m=0;
-    $c=get_option('spark_search_user_copy_right');
-    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
-    $time =$wpdb->get_results( "SELECT ID FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish' and post_type = 'post'");
-    foreach($time as $a){
-        $textlist[$m]=$a->ID;
-        $m++;
-    }
-    $art=$wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish'and post_type = 'post'");
-    $m=0;
-    global $count;
-    $count=0;
-    $articulnum=$wpdb->get_results( "SELECT comment_post_ID FROM `$wpdb->comments` ");
-    foreach($articulnum as $b){
-        $textlist3[$m]=$b->comment_post_ID;
-        for($i=0;$i<$art;$i++) {
-            if ($textlist3[$m] == $textlist[$i])
-                $count++;
-        }
-        $m++;
-    }
-    echo $count;
-}
-
-function mypostview(){
-    global $wpdb;
-    global $m;
-    global $textlist;
-    global $textlist1;
-    $m=0;
-    $c=get_option('spark_search_user_copy_right');
-    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
-    $time =$wpdb->get_results( "SELECT ID FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish' and post_type = 'post'");
-    foreach($time as $a){
-        $textlist[$m]=$a->ID;
-
-        $m++;
-    }
-
-    $articulnum=$wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish'and post_type = 'post'");
-    $c = $articulnum;
-    $m=0;
-    global $average;
-    $average=0;
-    while($c>0){
-        $textlist1[$m] =$wpdb->get_var( "SELECT meta_value FROM `$wpdb->postmeta` WHERE `meta_key` = 'project_views'and post_id=$textlist[$m]");
-        $m++;
-        $c--;
-    }
-    $c = $articulnum;
-    $m=0;
-    while($c>0){
-        $average+=$textlist1[$m];
-        $m++;
-        $c--;
-    }
-    $average=$average/($articulnum+0.1);
-    echo sprintf("%.2f", $average);
-}
-
-function mypostfavorite(){
-    global $wpdb;
-    $m=0;
-    $c=get_option('spark_search_user_copy_right');
-    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
-    $num =$wpdb->get_results( "SELECT ID FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish' and post_type = 'post'");
-    foreach($num as $a){
-        $textlist[$m]=$a->ID;
-
-        $m++;
-    }
-
-    $articulnum=$wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts` WHERE `post_author` = '$sql'and post_status='publish'and post_type = 'post'");
-    $c = $articulnum;
-    $m=0;
-    $sum=0;
-    while($c>0){
-        $textlist1[$m] =$wpdb->get_var( "SELECT COUNT(*) FROM wp_favorite WHERE favorite_post_id=$textlist[$m]");
-        $sum=$sum+$textlist1[$m];
-        $m++;
-        $c--;
-    }
-    echo $sum;
 }

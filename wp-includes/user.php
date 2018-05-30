@@ -26,6 +26,25 @@
  * @return WP_User|WP_Error WP_User on success, WP_Error on failure.
  */
 function wp_signon( $credentials = array(), $secure_cookie = '' ) {
+
+	// add by chenli, checkout if user in mediawiki
+	// password: www.ourspark.space  逻辑有问题,当mediawiki的用户修改密码后,应该先用wordpress的密码
+    // 输入 $_POST['log'] & $_POST['pwd']  输出 $_POST['pwd']
+/*	if(!empty($_POST['log']) && !empty($_POST['pwd'])) {
+	    //若在数据库中有该用户,判断pwd是否正确 直接输出$_POST['pwd']
+        $if_user_in_wp = checkLoginPass($_POST['log'],$_POST['pwd']);
+        if(!$if_user_in_wp){ //否则才发送post
+            $post_data = array(
+                'username' => $_POST['log'],
+                'password' => $_POST['pwd']
+            );
+            $if_user_in_mediawiki = send_post_to_mediawiki('http://115.28.144.64/wiki_wp/index.php', $post_data);
+            if(!empty($if_user_in_mediawiki)) {
+                $_POST['pwd'] = "www.ourspark.space";
+            }
+        }
+	}*/
+
 	if ( empty($credentials) ) {
 		$credentials = array(); // Back-compat for plugins passing an empty string.
 
@@ -420,7 +439,7 @@ function count_many_users_posts( $users, $post_type = 'post', $public_only = fal
  *
  * @since MU
  *
- * @return int The current user's ID, or 0 if no user is logged in.
+ * @return int The current user's ID
  */
 function get_current_user_id() {
 	if ( ! function_exists( 'wp_get_current_user' ) )
@@ -857,12 +876,7 @@ function count_users($strategy = 'time') {
 		$select_count = implode(', ', $select_count);
 
 		// Add the meta_value index to the selection list, then run the query.
-		$row = $wpdb->get_row( "
-			SELECT {$select_count}, COUNT(*)
-			FROM {$wpdb->usermeta}
-			INNER JOIN {$wpdb->users} ON user_id = ID
-			WHERE meta_key = '{$blog_prefix}capabilities'
-		", ARRAY_N );
+		$row = $wpdb->get_row( "SELECT $select_count, COUNT(*) FROM $wpdb->usermeta WHERE meta_key = '{$blog_prefix}capabilities'", ARRAY_N );
 
 		// Run the previous loop again to associate results with role names.
 		$col = 0;
@@ -886,12 +900,7 @@ function count_users($strategy = 'time') {
 			'none' => 0,
 		);
 
-		$users_of_blog = $wpdb->get_col( "
-			SELECT meta_value
-			FROM {$wpdb->usermeta}
-			INNER JOIN {$wpdb->users} ON user_id = ID
-			WHERE meta_key = '{$blog_prefix}capabilities'
-		" );
+		$users_of_blog = $wpdb->get_col( "SELECT meta_value FROM $wpdb->usermeta WHERE meta_key = '{$blog_prefix}capabilities'" );
 
 		foreach ( $users_of_blog as $caps_meta ) {
 			$b_roles = maybe_unserialize($caps_meta);
@@ -1218,7 +1227,7 @@ function sanitize_user_field($field, $value, $user_id, $context) {
 		if ( $prefixed ) {
 
 			/** This filter is documented in wp-includes/post.php */
-			$value = apply_filters( "{$field}", $value, $user_id, $context );
+			$value = apply_filters( $field, $value, $user_id, $context );
 		} else {
 
 			/**
@@ -2131,7 +2140,6 @@ function get_password_reset_key( $user ) {
 
 	// Now insert the key, hashed, into the DB.
 	if ( empty( $wp_hasher ) ) {
-		require_once ABSPATH . WPINC . '/class-phpass.php';
 		$wp_hasher = new PasswordHash( 8, true );
 	}
 	$hashed = time() . ':' . $wp_hasher->HashPassword( $key );
@@ -2176,7 +2184,6 @@ function check_password_reset_key($key, $login) {
 		return new WP_Error('invalid_key', __('Invalid key'));
 
 	if ( empty( $wp_hasher ) ) {
-		require_once ABSPATH . WPINC . '/class-phpass.php';
 		$wp_hasher = new PasswordHash( 8, true );
 	}
 
@@ -2306,12 +2313,15 @@ function register_new_user( $user_login, $user_email ) {
 	// Check the email address
 	if ( $user_email == '' ) {
 		$errors->add( 'empty_email', __( '<strong>ERROR</strong>: Please type your email address.' ) );
-	} elseif ( ! is_email( $user_email ) ) {
+	} elseif ( ! is_email( $user_email) ) {
 		$errors->add( 'invalid_email', __( '<strong>ERROR</strong>: The email address isn&#8217;t correct.' ) );
 		$user_email = '';
 	} elseif ( email_exists( $user_email ) ) {
 		$errors->add( 'email_exists', __( '<strong>ERROR</strong>: This email is already registered, please choose another one.' ) );
-	}
+	} elseif ( in_ban_email_list( $user_email ) ) {
+        $errors->add( 'invalid_email', __( '<strong>ERROR</strong>: The email address isn&#8217;t correct.' ) );
+        $user_email = '';
+    }
 
 	/**
 	 * Fires when submitting registration form data, before the user is created.
@@ -2367,6 +2377,20 @@ function register_new_user( $user_login, $user_email ) {
 
 	return $user_id;
 }
+
+/*
+ * 屏蔽俄罗斯的广告邮件注册
+ * */
+function in_ban_email_list( $email ) {
+    $ban_list = ['mail.ru'];
+    $email_suffix = explode('@',$email)[1];
+    if ( in_array($email_suffix,$ban_list) ) {
+        return true;
+    }
+    return false;
+}
+
+
 
 /**
  * Initiates email notifications related to the creation of new users.
@@ -2543,3 +2567,24 @@ function _wp_get_current_user() {
 
 	return $current_user;
 }
+
+/**
+ * create by chenli
+ * 发送http请求到mediawiki用户系统,检查该用户在mediawiki中是否为合法用户
+ */
+/*function send_post_to_mediawiki($url, $post_data) {
+
+	$postdata = http_build_query($post_data);
+	$options = array(
+			'http' => array(
+					'method' => 'POST',
+					'header' => 'Content-type:application/x-www-form-urlencoded',
+					'content' => $postdata,
+					'timeout' => 15 * 60 // 超时时间（单位:s）
+			)
+	);
+	$context = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
+
+	return $result;
+}*/

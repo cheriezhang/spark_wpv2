@@ -5,52 +5,66 @@
  * Date: 2017/3/18
  * Time: 20:52
  */
-
-wp_register_style('fep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('datepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('main-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');
-wp_register_style('table-style', plugins_url('table.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('user-style', plugins_url('user.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('tag-style', plugins_url('tagcloud.css', __FILE__), array(), '1.6', 'all');
-wp_register_script("jquery-script", plugins_url('js/jquery-3.2.1.js', __FILE__), array('jquery'));
-wp_register_script("date-script", plugins_url('js/dateRange.js', __FILE__), array('jquery'));
-wp_register_script("tag-script", plugins_url('js/tagcloud.min.js', __FILE__), array('jquery'));
-wp_register_script("ui-script", plugins_url('js/jquery-ui.js', __FILE__), array('jquery'));
-wp_register_script("time-script", plugins_url('js/active.js', __FILE__), array('jquery'));
-wp_register_script("fep-script", plugins_url('js/bootstrap.min.js', __FILE__), array('jquery'));
-wp_register_script("collapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
-wp_register_script("high-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
-wp_register_script("highm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
-//wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
-wp_register_script("transition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
-if ( is_admin() ) {
-    wp_enqueue_script("jquery-script");
-    wp_enqueue_script("fep-script");
-
-    wp_enqueue_script("tag-script");
-    wp_enqueue_script("time-script");
-    wp_enqueue_script("high-script");
-    wp_enqueue_script("transition-script");
-    wp_enqueue_script("highm-script");
-//    wp_enqueue_script("increment-script");
-    wp_enqueue_script("collapse-script");
-    wp_enqueue_script("date-script");
-    wp_enqueue_script("ui-script");
-
-    wp_enqueue_style('fep-style');
-    wp_enqueue_style('datepicker-style');
-    wp_enqueue_style('main-style');
-    wp_enqueue_style('table-style');
-    wp_enqueue_style('user-style');
-    wp_enqueue_style('tag-style');
-}
+//require_once( ABSPATH . 'wp-admin/includes/admin.php' );
+//function plugin2()
+//{
+//    wp_register_style('zhyfep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhydatepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhymain-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');
+//    wp_register_style('zhytable-style', plugins_url('table.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhyuser-style', plugins_url('user.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhytag-style', plugins_url('tagcloud.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_script("zhyjquery-script", plugins_url('js/jquery-3.2.1.js', __FILE__), array('jquery'));
+//    wp_register_script("zhydate-script", plugins_url('js/dateRange.js', __FILE__), array('jquery'));
+//    wp_register_script("zhytag-script", plugins_url('js/tagcloud.min.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyui-script", plugins_url('js/jquery-ui.js', __FILE__), array('jquery'));
+//    wp_register_script("zhytime-script", plugins_url('js/active.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyfep-script", plugins_url('js/bootstrap.min.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyview-script", plugins_url('js/view.js', __FILE__), array('jquery'));
+//    wp_register_script("zhycollapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyhigh-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyhighm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
+////wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
+//    wp_register_script("zhytransition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
+//
+//    wp_enqueue_script("zhyjquery-script");
+//    wp_enqueue_script("zhyfep-script");
+//
+//    wp_enqueue_script("zhytag-script");
+//    wp_enqueue_script("zhytime-script");
+//    wp_enqueue_script("zhyview-script");
+//    wp_enqueue_script("zhyhigh-script");
+//    wp_enqueue_script("zhytransition-script");
+//    wp_enqueue_script("zhyhighm-script");
+////    wp_enqueue_script("increment-script");
+//    wp_enqueue_script("zhycollapse-script");
+//    wp_enqueue_script("zhydate-script");
+//    wp_enqueue_script("zhyui-script");
+//
+//    wp_enqueue_style('zhyfep-style');
+//    wp_enqueue_style('zhydatepicker-style');
+//    wp_enqueue_style('zhymain-style');
+//    wp_enqueue_style('zhytable-style');
+//    wp_enqueue_style('zhyuser-style');
+//    wp_enqueue_style('zhytag-style');
+//}
+//
+//add_action( 'admin_enqueue_scripts', 'plugin2' );
 if ( ! function_exists( 'model' ) ) {
     require_once('model_drawing.php');
 }
 if ( ! function_exists( 'timechart' ) ) {
     require_once('timechart.php');
 }
-
+//function is_my_plugin_screen() {
+//    $screen = get_current_screen();
+//    echo is_object($screen) && $screen->id;
+//    if (is_object($screen) && $screen->id == 'settings_page_my_plugin') {
+//        return true;
+//    } else {
+//        return false;
+//    }
+//}
 //require_once('active.php');
 global $time,$time1,$time2,$time3,$time4,$time5,$time6,$time7;
 $time=explode(" ",timechart());
@@ -61,7 +75,30 @@ $time4=$time[3];
 $time5=$time[4];
 $time6=$time[5];
 $time7=$time[6];
-
+$vtime=explode(" ",wikiviewtimechart());
+$vtime1=$vtime[0];
+$vtime2=$vtime[1];
+$vtime3=$vtime[2];
+$vtime4=$vtime[3];
+$vtime5=$vtime[4];
+$vtime6=$vtime[5];
+$vtime7=$vtime[6];
+$qtime=explode(" ",questiontimechart());
+$qtime1=$qtime[0];
+$qtime2=$qtime[1];
+$qtime3=$qtime[2];
+$qtime4=$qtime[3];
+$qtime5=$qtime[4];
+$qtime6=$qtime[5];
+$qtime7=$qtime[6];
+$atime=explode(" ",answertimechart());
+$atime1=$atime[0];
+$atime2=$atime[1];
+$atime3=$atime[2];
+$atime4=$atime[3];
+$atime5=$atime[4];
+$atime6=$atime[5];
+$atime7=$atime[6];
 require 'infer.php';
 add_action('wp_ajax_time_action', 'time_check');
 function time_check()
@@ -97,20 +134,20 @@ function time_check()
     $result = array(0, 0, 0, 0, 0, 0, 0);
     for ($i = 0; $i < $artnum; $i++) {
 
-        if ($time1 == $textlist1[$i])
-            $result[0]++;
-        else if ($time2 == $textlist1[$i])
-            $result[1]++;
-        else if ($time3 == $textlist1[$i])
-            $result[2]++;
-        else if ($time4 == $textlist1[$i])
-            $result[3]++;
-        else if ($time5 == $textlist1[$i])
-            $result[4]++;
-        else if ($time6 == $textlist1[$i])
-            $result[5]++;
-        else if ($time7 == $textlist1[$i])
-            $result[6]++;
+    if ($time1 == $textlist1[$i])
+        $result[0]++;
+    else if ($time2 == $textlist1[$i])
+        $result[1]++;
+    else if ($time3 == $textlist1[$i])
+        $result[2]++;
+    else if ($time4 == $textlist1[$i])
+        $result[3]++;
+    else if ($time5 == $textlist1[$i])
+        $result[4]++;
+    else if ($time6 == $textlist1[$i])
+        $result[5]++;
+    else if ($time7 == $textlist1[$i])
+        $result[6]++;
     }
 
     $resulttime="$result[0] $result[1] $result[2] $result[3] $result[4] $result[5] $result[6]";
@@ -119,84 +156,103 @@ function time_check()
 
     die();
 }
+
+add_action('wp_ajax_tidui_action', 'tidui_check');
+function tidui_check()
+{
+    $tidui = isset($_POST['tidui']) ? $_POST['tidui'] : null;
+    $zhuangtai= isset($_POST['zhuangtai']) ? $_POST['zhuangtai'] : null;
+
+    global $wpdb;
+    if($tidui==1){
+        if($zhuangtai==0) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='繁忙'");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==1) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='活跃'");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+    }
+    elseif($tidui==4){
+        $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='放弃'");
+        $m = 0;
+        foreach ($user1 as $a) {
+            $user1list[$m] = $a->user_name;
+            $m++;
+        }
+    }
+    elseif($tidui==2){
+        if($zhuangtai==0) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='暂时搁置' and `rank1`=2");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==1) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='努力' and `rank1`=2");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==2) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='平稳' and `rank1`=2");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+    }
+    else{
+        if($zhuangtai==0) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='暂时搁置' and `rank1`=3");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==1) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='努力' and `rank1`=3");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==2) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='平稳' and `rank1`=3");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+    }
+    shuffle($user1list);
+    $c=count($user1list);
+    $user1list=array_slice($user1list,0,20);
+    echo $c." ".implode(" ",$user1list);
+    die();
+}
+
 function spark_settings_submenu_page()
 {
     global $time1;
     $tag=tag();
-    $history_value=history_value();
-    $timelong1=$history_value[0]; $timelong2=$history_value[1]; $timelong3=$history_value[2]; $timelong4=$history_value[3];
-    $history=history();
-    $abilityhistory_value=abilityhistory_value();
-    $timelong5=$abilityhistory_value[0]; $timelong6=$abilityhistory_value[1]; $timelong7=$abilityhistory_value[2]; $timelong8=$abilityhistory_value[3];
-    $history0=$history[0]; $history1=$history[1]; $history2=$history[2]; $history3=$history[3]; $history4=$history[4];
-    $history5=$history[5]; $history6=$history[6]; $history7=$history[7]; $history8=$history[8]; $history9=$history[9];
-    $favorite=myfavoriteclass();
-    $favorite0=$favorite[0]; $favorite1=$favorite[1]; $favorite2=$favorite[2]; $favorite3=$favorite[3]; $favorite4=$favorite[4];
-    $favorite5=$favorite[5]; $favorite6=$favorite[6]; $favorite7=$favorite[7]; $favorite8=$favorite[8]; $favorite9=$favorite[9];
-    $search=mysearchclass();
-    $search0=$search[0]; $search1=$search[1]; $search2=$search[2]; $search3=$search[3]; $search4=$search[4]; $search5=$search[5];
-    $search6=$search[6]; $search7=$search[7]; $search8=$search[8]; $search9=$search[9];
-    $ask=myaskclass();
-    $ask0=$ask[0]; $ask1=$ask[1]; $ask2=$ask[2]; $ask3=$ask[3]; $ask4=$ask[4]; $ask5=$ask[5]; $ask6=$ask[6]; $ask7=$ask[7];
-    $ask8=$ask[8]; $ask9=$ask[9];
-    $project=projectclass();
-    $project0=$project[0]; $project1=$project[1]; $project2=$project[2]; $project3=$project[3]; $project4=$project[4];
-    $project5=$project[5]; $project6=$project[6]; $project7=$project[7]; $project8=$project[8]; $project9=$project[9];
-
-    $socre=explode(",",getinterest());
-    $jiqixuexicount=$socre[0];
-    $jisuanjishijuecount=$socre[1];
-    $tuijiancount=$socre[2];
-    $dianlufenxicount=$socre[3];
-    $danpianjicount=$socre[4];
-    $shuzidianlucount=$socre[5];
-    $tongyuancount=$socre[6];
-    $tongxincount=$socre[7];
-    $diancicount=$socre[8];
-    $bianchengcount=$socre[9];
-    $jisuanjijichucount=$socre[10];
-    $webcount=$socre[11];
-    $socred=explode(",",getdesire());
-    $jiqixuexicountd=$socred[0];
-    $jisuanjishijuecountd=$socred[1];
-    $tuijiancountd=$socred[2];
-    $dianlufenxicountd=$socred[3];
-    $danpianjicountd=$socred[4];
-    $shuzidianlucountd=$socred[5];
-    $tongyuancountd=$socred[6];
-    $tongxincountd=$socred[7];
-    $diancicountd=$socred[8];
-    $bianchengcountd=$socred[9];
-    $jisuanjijichucountd=$socred[10];
-    $webcountd=$socred[11];
-    global $wpdb;
-    $jiqixuexiaverage=$wpdb->get_var( "SELECT round(avg(jiqixuexicount),2) FROM ".COUNT_TABLE." ");
-    $jisuanjishijueaverage=$wpdb->get_var( "SELECT round(avg(jisuanjishijuecount),2) FROM ".COUNT_TABLE." ");
-    $tuijianaverage=$wpdb->get_var( "SELECT round(avg(tuijiancount),2) FROM ".COUNT_TABLE." ");
-    $dianlufenxiaverage=$wpdb->get_var( "SELECT round(avg(dianlufenxicount),2) FROM ".COUNT_TABLE." ");
-    $danpianjiaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNT_TABLE." ");
-    $shuzidianluaverage=$wpdb->get_var( "SELECT round(avg(shuzidianlucount),2) FROM ".COUNT_TABLE." ");
-    $tongyuanaverage=$wpdb->get_var( "SELECT round(avg(tongyuancount),2) FROM ".COUNT_TABLE." ");
-    $tongxinaverage=$wpdb->get_var( "SELECT round(avg(tongxincount),2) FROM ".COUNT_TABLE." ");
-    $dianciaverage=$wpdb->get_var( "SELECT round(avg(diancicount),2) FROM ".COUNT_TABLE." ");
-    $bianchengaverage=$wpdb->get_var( "SELECT round(avg(bianchengcount),2) FROM ".COUNT_TABLE." ");
-    $jisuanjijichuaverage=$wpdb->get_var( "SELECT round(avg(jisuanjijichucount),2) FROM ".COUNT_TABLE." ");
-    $webaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNT_TABLE." ");
-
-
-    $jiqixuexiaveraged=$wpdb->get_var( "SELECT round(avg(jiqixuexicount),2) FROM ".COUNTD_TABLE." ");
-    $jisuanjishijueaveraged=$wpdb->get_var( "SELECT round(avg(jisuanjishijuecount),2) FROM ".COUNTD_TABLE." ");
-    $tuijianaveraged=$wpdb->get_var( "SELECT round(avg(tuijiancount),2) FROM ".COUNTD_TABLE." ");
-    $dianlufenxiaveraged=$wpdb->get_var( "SELECT round(avg(dianlufenxicount),2) FROM ".COUNTD_TABLE." ");
-    $danpianjiaveraged=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNTD_TABLE." ");
-    $shuzidianluaveraged=$wpdb->get_var( "SELECT round(avg(shuzidianlucount),2) FROM ".COUNTD_TABLE." ");
-    $tongyuanaveraged=$wpdb->get_var( "SELECT round(avg(tongyuancount),2) FROM ".COUNTD_TABLE." ");
-    $tongxinaveraged=$wpdb->get_var( "SELECT round(avg(tongxincount),2) FROM ".COUNTD_TABLE." ");
-    $dianciaveraged=$wpdb->get_var( "SELECT round(avg(diancicount),2) FROM ".COUNTD_TABLE." ");
-    $bianchengaveraged=$wpdb->get_var( "SELECT round(avg(bianchengcount),2) FROM ".COUNTD_TABLE." ");
-    $jisuanjijichuaveraged=$wpdb->get_var( "SELECT round(avg(jisuanjijichucount),2) FROM ".COUNTD_TABLE." ");
-    $webaveraged=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNTD_TABLE." ");
-
 //    $a=history();
     global $his;
     ?>
@@ -211,7 +267,7 @@ function spark_settings_submenu_page()
 <!--        <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <!--        <link rel="stylesheet" type="text/css" href="--><?php //echo plugins_url('miaov_style.css')?><!--" />-->
 <!--       <script type="text/javascript" src="--><?php //echo site_url('wp-content/plugins/spark_analyse/miaov.js')?><!--"></script>-->
-       <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<!--       <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>-->
 <!---->
 
        <script type="text/javascript">
@@ -229,500 +285,84 @@ $(function () {
         keep: true          //鼠标移出组件后是否继续随鼠标滚动
     });
 //
-    var chart = new Highcharts.Chart('containerb', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: '学生浏览量占比'
-        },
-        tooltip: {
-            headerFormat: '{series.name}<br>',
-            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: '学生浏览量占比',
-            data: [
-                ['<?php echo $history0 ?>',   <?php echo $history5?>],
-                ['<?php echo $history1 ?>',   <?php echo $history6?>],
-                ['<?php echo $history2 ?>',   <?php echo $history7?>],
-                ['<?php echo $history3 ?>',   <?php echo $history8?>],
-                ['<?php echo $history4 ?>',   <?php echo $history9?>]
-            ]
-        }]
-    });
-    var chart1 = new Highcharts.Chart('containerb2', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: '学生收藏占比'
-        },
-        tooltip: {
-            headerFormat: '{series.name}<br>',
-            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: '学生收藏占比',
-            data: [
-                ['<?php echo $favorite0 ?>',   <?php echo $favorite5?>],
-                ['<?php echo $favorite1 ?>',   <?php echo $favorite6?>],
-                ['<?php echo $favorite2 ?>',   <?php echo $favorite7?>],
-                ['<?php echo $favorite3 ?>',   <?php echo $favorite8?>],
-                ['<?php echo $favorite4 ?>',   <?php echo $favorite9?>]
-            ]
-        }]
-    });
-    var chart2 = new Highcharts.Chart('containerb4', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: '学生提问占比'
-        },
-        tooltip: {
-            headerFormat: '{series.name}<br>',
-            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: '学生提问占比',
-            data: [
-                ['<?php echo $ask0 ?>',   <?php echo $ask5?>],
-                ['<?php echo $ask1 ?>',   <?php echo $ask6?>],
-                ['<?php echo $ask2 ?>',   <?php echo $ask7?>],
-                ['<?php echo $ask3 ?>',   <?php echo $ask8?>],
-                ['<?php echo $ask4 ?>',   <?php echo $ask9?>]
-            ]
-        }]
-    });
-    var chart3 = new Highcharts.Chart('containerb5', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: '学生搜索占比'
-        },
-        tooltip: {
-            headerFormat: '{series.name}<br>',
-            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: '学生搜索占比',
-            data: [
-                ['<?php echo $search0 ?>',   <?php echo $search5?>],
-                ['<?php echo $search1 ?>',   <?php echo $search6?>],
-                ['<?php echo $search2 ?>',   <?php echo $search7?>],
-                ['<?php echo $search3 ?>',   <?php echo $search8?>],
-                ['<?php echo $search4 ?>',   <?php echo $search9?>]
-            ]
-        }]
-    });
+               var chart = new Highcharts.Chart('container', {
+                   title: {
+                       text: '项目编辑评论时间分布图',
+                       x: -20
+                   },
+                   credits: {
+                       enabled: false
+                   },
+                   xAxis: {
+                       categories: ['00-08', '08-11', '11-14', '14-17', '17-20', '20-22', '22-24']
+                   },
+                   yAxis: {
+                       title: {
+                           text: '次数'
+                       },
+                       plotLines: [{
+                           value: 0,
+                           width: 1,
+                           color: '#808080'
+                       }]
+                   },
+                   tooltip: {
 
-    $('#containerxq').highcharts({
-        chart: {
-            polar: true,
-            type: 'line'
-        },
-        title: {
-            text: '兴趣推测',
-            x: -80
-        },
-        credits: {
-            enabled: false
-        },
-        pane: {
-            size: '80%'
-        },
-        xAxis: {
-            categories: ['机器学习', '计算机视觉', '推荐系统', '电路分析',
-                '单片机', '数字电路','通信原理','移动通信','电磁波','编程语言','计算机基础','网络'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 0,
-            min: 0
-        },
-        tooltip: {
-            shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
-        },
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 70,
-            layout: 'vertical'
-        },
-        series: [{
-            name: '学生兴趣方向',
-            data: [ <?php echo $jiqixuexicountd?>,<?php echo $jisuanjishijuecountd?>, <?php echo $tuijiancountd?>, <?php echo $dianlufenxicountd ?>,<?php echo $danpianjicountd ?>, <?php echo $shuzidianlucountd ?>,<?php echo $tongyuancountd ?>,<?php echo $tongxincountd ?>,<?php echo $diancicountd ?>,<?php echo $bianchengcountd ?>, <?php echo $jisuanjijichucountd ?>,<?php echo $webcountd ?>],
-            pointPlacement: 'on'
-        },{
-            name: '平均值',
-            data: [ <?php echo $jiqixuexiaveraged?>,<?php echo $jisuanjishijueaveraged?>, <?php echo $tuijianaveraged?>, <?php echo $dianlufenxiaveraged ?>,<?php echo $danpianjiaveraged ?>, <?php echo $shuzidianluaveraged ?>,<?php echo $tongyuanaveraged ?>,<?php echo $tongxinaveraged ?>,<?php echo $dianciaveraged ?>,<?php echo $bianchengaveraged ?>, <?php echo $jisuanjijichuaveraged ?>,<?php echo $webaveraged ?>],
-            pointPlacement: 'on'
-        }]
-    });
+                   },
+                   legend: {
+                       layout: 'vertical',
+                       align: 'right',
+                       verticalAlign: 'middle',
+                       borderWidth: 0
+                   },
+                   series: [{
+                       name: '编辑时间分布',
+                       data: [<?php time1()?>, <?php time2()?>, <?php time3()?>, <?php time4()?>, <?php time5()?>, <?php time6()?>, <?php time7()?>]
+                   }, {
+                       name: '评论时间分布',
+                       data: [<?php vtime1()?>, <?php vtime2()?>, <?php vtime3()?>, <?php vtime4()?>, <?php vtime5()?>, <?php vtime6()?>, <?php vtime7()?>]
+                   }]
+               });
+               var chart1 = new Highcharts.Chart('container1', {
+                   title: {
+                       text: '问答时间分布图',
+                       x: -20
+                   },
+                   credits: {
+                       enabled: false
+                   },
+                   xAxis: {
+                       categories: ['00-08', '08-11', '11-14', '14-17', '17-20', '20-22', '22-24']
+                   },
+                   yAxis: {
+                       title: {
+                           text: '次数'
+                       },
+                       plotLines: [{
+                           value: 0,
+                           width: 1,
+                           color: '#808080'
+                       }]
+                   },
+                   tooltip: {
 
-    var timelong1 = <?php echo json_encode($timelong1);?>;
-    var timelong2=<?php echo json_encode($timelong2);?>;
-    var timelong3=<?php echo json_encode($timelong3);?>;
-    var timelong4=<?php echo json_encode($timelong4);?>;
-    $('#containerzx').highcharts(
-        {
+                   },
+                   legend: {
+                       layout: 'vertical',
+                       align: 'right',
+                       verticalAlign: 'middle',
+                       borderWidth: 0
+                   },
+                   series: [{
+                       name: '提问时间分布',
+                       data: [<?php qtime1()?>, <?php qtime2()?>, <?php qtime3()?>, <?php qtime4()?>, <?php qtime5()?>, <?php qtime6()?>, <?php qtime7()?>]
+                   }, {
+                       name: '回答时间分布',
+                       data: [<?php atime1()?>, <?php atime2()?>, <?php atime3()?>, <?php atime4()?>, <?php atime5()?>, <?php atime6()?>, <?php atime7()?>]
+                   }]
 
-            chart: {
-                zoomType: 'x'
-            },
-            title: {
-                text: '学生兴趣变化图'
-            },
-            subtitle: {
-                text: document.ontouchstart === undefined ?
-                    '鼠标拖动可以进行缩放' : '手势操作进行缩放'
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: {
-                    millisecond: '%H:%M:%S.%L',
-                    second: '%H:%M:%S',
-                    minute: '%H:%M',
-                    hour: '%H:%M',
-                    day: '%m-%d',
-                    week: '%m-%d',
-                    month: '%Y-%m',
-                    year: '%Y'
-                }
-            },
-            tooltip: {
-                dateTimeLabelFormats: {
-                    millisecond: '%H:%M:%S.%L',
-                    second: '%H:%M:%S',
-                    minute: '%H:%M',
-                    hour: '%H:%M',
-                    day: '%Y-%m-%d',
-                    week: '%m-%d',
-                    month: '%Y-%m',
-                    year: '%Y'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: '次数'
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
-            plotOptions: {
-                area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
-                    threshold: null
-                }
-            },
-            series: [{
-                name: '计算机',
-                data: timelong4,
-                pointInterval: 24 * 3600 * 1000,
-                pointStart: Date.UTC(2017, 5, 1),
-            }, {
-                name: '电子',
-                data: timelong2,
-                pointInterval: 24 * 3600 * 1000,
-                pointStart: Date.UTC(2017, 5, 1),
-            }, {
-                name: '人工智能',
-                data: timelong1,
-                pointInterval: 24 * 3600 * 1000,
-                pointStart: Date.UTC(2017, 5, 1),
-            }, {
-                name: '通信',
-                data: timelong3,
-                pointInterval: 24 * 3600 * 1000,
-                pointStart: Date.UTC(2017, 5, 1),
-            }],
-
-
-        });
-
-    $('#containersc').highcharts({
-        chart: {
-            polar: true,
-            type: 'line'
-        },
-        title: {
-            text: '能力推测',
-            x: -80
-        },
-        credits: {
-            enabled: false
-        },
-        pane: {
-            size: '80%'
-        },
-        xAxis: {
-            categories: ['机器学习', '计算机视觉', '推荐系统', '电路分析',
-                '单片机', '数字电路','通信原理','移动通信','电磁波','编程语言','计算机基础','网络'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 0,
-            min: 0
-        },
-        tooltip: {
-            shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
-        },
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 70,
-            layout: 'vertical'
-        },
-        series: [{
-            name: '学生擅长方向',
-            data: [ <?php echo $jiqixuexicount?>,<?php echo $jisuanjishijuecount?>, <?php echo $tuijiancount?>, <?php echo $dianlufenxicount ?>,<?php echo $danpianjicount ?>, <?php echo $shuzidianlucount ?>,<?php echo $tongyuancount ?>,<?php echo $tongxincount ?>,<?php echo $diancicount ?>,<?php echo $bianchengcount ?>, <?php echo $jisuanjijichucount ?>,<?php echo $webcount ?>],
-            pointPlacement: 'on',
-        }, {
-            name: '平均值',
-            data: [ <?php echo $jiqixuexiaverage?>,<?php echo $jisuanjishijueaverage?>, <?php echo $tuijianaverage?>, <?php echo $dianlufenxiaverage ?>,<?php echo $danpianjiaverage ?>, <?php echo $shuzidianluaverage ?>,<?php echo $tongyuanaverage ?>,<?php echo $tongxinaverage ?>,<?php echo $dianciaverage ?>,<?php echo $bianchengaverage ?>, <?php echo $jisuanjijichuaverage ?>,<?php echo $webaverage ?>],
-            pointPlacement: 'on',
-        }]
-    });
-
-    var chart7 = new Highcharts.Chart('containerb3', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: '学生参与项目类别占比'
-        },
-        tooltip: {
-            headerFormat: '{series.name}<br>',
-            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: '学生参与项目类别占比',
-            data: [
-                ['<?php echo $project0 ?>',   <?php echo $project5?>],
-                ['<?php echo $project1 ?>',   <?php echo $project6?>],
-                ['<?php echo $project2 ?>',   <?php echo $project7?>],
-                ['<?php echo $project3 ?>',   <?php echo $project8?>],
-                ['<?php echo $project4 ?>',   <?php echo $project9?>]
-            ]
-        }]
-    });
-    var timelong5 = <?php echo json_encode($timelong5);?>;
-    var timelong6=<?php echo json_encode($timelong6);?>;
-    var timelong7=<?php echo json_encode($timelong7);?>;
-    var timelong8=<?php echo json_encode($timelong8);?>;
-    $('#containerab').highcharts(
-        {
-
-            chart: {
-                zoomType: 'x'
-            },
-            title: {
-                text: '学生能力变化图'
-            },
-            subtitle: {
-                text: document.ontouchstart === undefined ?
-                    '鼠标拖动可以进行缩放' : '手势操作进行缩放'
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: {
-                    millisecond: '%H:%M:%S.%L',
-                    second: '%H:%M:%S',
-                    minute: '%H:%M',
-                    hour: '%H:%M',
-                    day: '%m-%d',
-                    week: '%m-%d',
-                    month: '%Y-%m',
-                    year: '%Y'
-                }
-            },
-            tooltip: {
-                dateTimeLabelFormats: {
-                    millisecond: '%H:%M:%S.%L',
-                    second: '%H:%M:%S',
-                    minute: '%H:%M',
-                    hour: '%H:%M',
-                    day: '%Y-%m-%d',
-                    week: '%m-%d',
-                    month: '%Y-%m',
-                    year: '%Y'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: '次数'
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
-            plotOptions: {
-                area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
-                    threshold: null
-                }
-            },
-            series: [{
-                name: '计算机',
-                data: timelong8,
-                pointInterval: 24 * 3600 * 1000,
-                pointStart: Date.UTC(2017, 5, 1),
-            }, {
-                name: '电子',
-                data: timelong6,
-                pointInterval: 24 * 3600 * 1000,
-                pointStart: Date.UTC(2017, 5, 1),
-            }, {
-                name: '人工智能',
-                data: timelong5,
-                pointInterval: 24 * 3600 * 1000,
-                pointStart: Date.UTC(2017, 5, 1),
-            }, {
-                name: '通信',
-                data: timelong7,
-                pointInterval: 24 * 3600 * 1000,
-                pointStart: Date.UTC(2017, 5, 1),
-            }],
-
-
-        });
-
-
-
-    //   var chart2 = new Highcharts.Chart('container2', {
+               });
+//    var chart2 = new Highcharts.Chart('container2', {
 //        title: {
 //            text: '一周用户活跃度变化图',
 //            x: -20
@@ -1003,7 +643,7 @@ $(function () {
 
     <STYLE TYPE="text/css">
         body {background:blue;}
-        #mokuai {position: absolute;height: 217px;left: 626px;top: 104px;}
+        #mokuai {position: absolute;height: 217px;left: 626px;margin-top: 0px;}
         #mokuai a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:#fff; font-weight:bold; text-decoration:none; padding: 3px 6px; }
         #mokuai a:hover {border: 1px solid #eee; background: #000; }
         #mokuai .blue {color:blue;}
@@ -1089,27 +729,11 @@ $(function () {
 
             </div>
         </div>
-          <p style="font-size: 18px;    margin: 8px;">求知欲</p>
+          <p style="font-size: 18px;    margin: 8px;">Wiki</p>
         <div class="row">
 
                     <div   class="col-md-6" style="background-color: white;width: 47%">
-                        <table class="table">
-                            <tr>
-                                <th></th>
-                                <th>提问</th>
-                                <th>浏览</th>
-                                <th>搜索</th>
-                                <th>收藏</th>
-                            </tr>
-                            <tr>
-                                <td>次数</td>
-                                <td><?php myquestionsum()?></td>
-                                <td><?php myviewsum()?></td>
-                                <td><?php searchsum()?></td>
-                                <td><?php myfavorite()?></td>
-                            </tr>
-
-                        </table>
+                        <div id="container" style="min-width:450px;height:400px"></div>
                     </div>
 
                         <div id="mokuai1" class="col-md-6" style="background-color: white;margin-left: 40px;width: 47%;">
@@ -1133,263 +757,63 @@ $(function () {
 
         </div>
 
-          <div class="row" style="margin-top:15px;">
-              <div class="col-md-6" style="background-color: white;width: 47%">
-                  <div id="containerb" style="min-width:400px;height:400px"></div>
-              </div>
-              <div class="col-md-6" style="background-color: white;width: 47%">
-                  <div id="containerb5" style="min-width:400px;height:400px"></div>
-              </div>
-
-          </div>
-          <div class="row">
-              <div class="col-md-6" style="background-color: white;width: 47%">
-                  <div id="containerb4" style="min-width:400px;height:400px"></div>
-              </div>
-              <div class="col-md-6" style="background-color: white;width: 47%">
-                  <div id="containerb2" style="min-width:400px;height:400px"></div>
-              </div>
-
-          </div>
-
-          <p style="font-size: 18px;    margin: 8px;">学生兴趣</p>
-          <div class="row">
-
-              <div   class="col-md-6" style="background-color: white;width: 47%">
-                  <table class="table">
-                      <tr>
-                          <th><?php myinterest()?></th>
-                      </tr>
-
-                  </table>
-              </div>
-
-              <div   class="col-md-6" style="background-color: white;margin-left:40px;width: 48%">
-                  <div id="containerxq" style="min-width:400px;height:400px"></div>
-              </div>
-
-
-          </div>
-
-              <div class="row" style="margin-top:15px;">
-                  <div class="col-md-6" style="background-color: white; width: 47%">
-                      <p style="    margin-top: 20px;
-    margin-left: 10px;">学生兴趣统计表</p>
-                      <table class="table">
-                          <tr>
-                              <th>科目</th>
-                              <th>评分</th>
-                              <th>平均分</th>
-                          </tr>
-                          <tr>
-                              <td>机器学习</td>
-                              <td><?php echo $jiqixuexicountd?></td>
-                              <td><?php echo $jiqixuexiaveraged?></td>
-
-                          </tr>
-                          <tr>
-                              <td>计算机视觉</td>
-                              <td><?php echo $jisuanjishijuecountd?></td>
-                              <td><?php echo $jisuanjishijueaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>推荐系统</td>
-                              <td><?php echo $tuijiancountd?></td>
-                              <td><?php echo $tuijianaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>电路分析</td>
-                              <td><?php echo $dianlufenxicountd?></td>
-                              <td><?php echo $dianlufenxiaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>单片机</td>
-                              <td><?php echo $danpianjicountd?></td>
-                              <td><?php echo $danpianjiaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>数字电路</td>
-                              <td><?php echo $shuzidianlucountd?></td>
-                              <td><?php echo $shuzidianluaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>通信原理</td>
-                              <td><?php echo $tongyuancountd?></td>
-                              <td><?php echo $tongyuanaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>移动通信</td>
-                              <td><?php echo $tongxincountd ?></td>
-                              <td><?php echo $tongxinaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>电磁波</td>
-                              <td><?php echo $diancicountd?></td>
-                              <td><?php echo $dianciaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>编程语言</td>
-                              <td><?php echo $bianchengcountd?></td>
-                              <td><?php echo $bianchengaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>计算机基础</td>
-                              <td><?php echo $jisuanjijichucountd?></td>
-                              <td><?php echo $jisuanjijichuaveraged?></td>
-                          </tr>
-                          <tr>
-                              <td>网络</td>
-                              <td><?php echo $webcountd?></td>
-                              <td><?php echo $webaveraged?></td>
-                          </tr>
-                      </table>
-                  </div>
-                  <div   class="col-md-6" style="background-color: white;margin-left:40px;width: 47%">
-                      <div id="containerzx" style="min-width:400px;height:400px"></div>
-                  </div>
-              </div>
-          </div>
-
-      <p style="font-size: 18px;    margin: 8px;">学生能力</p>
-      <div class="row">
-
-          <div   class="col-md-6" style="background-color: white;width: 47%">
-              <table>
-                  <tr>
-                      <th></th>
-                      <th>次数</th>
-                      <th>被点赞</th>
-                      <th>被采纳</th>
-                  </tr>
-                  <tr>
-                      <td>回答</td>
-                      <td><?php myanswersum()?></td>
-                      <td><?php mygetzan()?></td>
-                      <td><?php mygetchoice()?></td>
-                  </tr>
-              </table>
-          </div>
-
-          <div   class="col-md-6" style="background-color: white;margin-left:40px;width: 48%">
-              <table>
-                  <tr>
-                      <th></th>
-                      <th>参与数量</th>
-                      <th>评论量</th>
-                      <th>平均浏览量</th>
-                      <th>被收藏量</th>
-                  </tr>
-                  <tr>
-                      <td>项目</td>
-                      <td><?php mypublish()?></td>
-                      <td><?php mypostcomment()?></td>
-                      <td><?php mypostview()?></td>
-                      <td><?php mypostfavorite()?></td>
-                  </tr>
-              </table>
-          </div>
-
-
-      </div>
-
-      <div class="row" style="margin-top:15px;">
-
-          <div   class="col-md-6" style="background-color: white;width: 47%">
-              <div id="containersc" style="min-width:400px;height:400px"></div>
-          </div>
-
-          <div   class="col-md-6" style="background-color: white;margin-left:40px;width: 48%">
-              <div id="containerb3" style="min-width:400px;height:400px"></div>
-          </div>
-
-
-      </div>
-
-      <div class="row" style="    margin-top: 15px;">
-          <div  class="col-md-6" style="background-color: white;width: 47%
+        <div class="row" style="    margin-top: 15px;">
+                    <div  class="col-md-6" style="background-color: white;width: 47%
                ">
 
 
-              <p style="    margin-top: 20px;
-    margin-left: 10px;">学生擅长统计表</p>
-              <table class="table">
-                  <tr>
-                      <th>类目</th>
-                      <th>评分</th>
-                      <th>平均分</th>
-                  </tr>
-                  <tr>
-                      <td>机器学习</td>
-                      <td><?php echo $jiqixuexicount?></td>
-                      <td><?php echo $jiqixuexiaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>计算机视觉</td>
-                      <td><?php echo $jisuanjishijuecount?></td>
-                      <td><?php echo $jisuanjishijueaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>推荐系统</td>
-                      <td><?php echo $tuijiancount?></td>
-                      <td><?php echo $tuijianaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>电路分析</td>
-                      <td><?php echo $dianlufenxicount ?></td>
-                      <td><?php echo $dianlufenxiaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>单片机</td>
-                      <td><?php echo $danpianjicount ?></td>
-                      <td><?php echo $danpianjiaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>数字电路</td>
-                      <td><?php echo $shuzidianlucount ?></td>
-                      <td><?php echo $shuzidianluaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>通信原理</td>
-                      <td><?php echo $tongyuancount ?></td>
-                      <td><?php echo $tongyuanaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>移动通信</td>
-                      <td><?php echo $tongxincount ?></td>
-                      <td><?php echo $tongxinaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>电磁波</td>
-                      <td><?php echo $diancicount ?></td>
-                      <td><?php echo $dianciaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>编程语言</td>
-                      <td><?php echo $bianchengcount ?></td>
-                      <td><?php echo $bianchengaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>计算机基础</td>
-                      <td><?php echo $jisuanjijichucount ?></td>
-                      <td><?php echo $jisuanjijichuaverage?></td>
-                  </tr>
-                  <tr>
-                      <td>网络</td>
-                      <td><?php echo $webcount ?></td>
-                      <td><?php echo $webaverage?></td>
-                  </tr>
-              </table>
-          </div>
-          <div   class="col-md-6" style="background-color: white;margin-left:40px;width: 47%">
-              <div id="containerab" style="min-width:400px;height:400px"></div>
+                        <p style="    margin-top: 20px;
+    margin-left: 10px;">项目编辑创建词条数量统计表</p>
+                        <table class="table ">
+                            <tr>
+                                <th></th>
+                                <th>周</th>
+                                <th>月</th>
+                                <th>总计</th>
+                            </tr>
+                            <tr>
+                                <td>编辑次数</td>
+                                <td><?php edittimezhou()?></td>
+                                <td><?php edittimemonth()?></td>
+                                <td><?php editsum()?></td>
+                            </tr>
+                            <tr>
+                                <td>创建次数</td>
+                                <td><?php publishtimezhou()?></td>
+                                <td><?php publishtimemonth()?></td>
+                                <td><?php publishsum()?></td>
+<!--                                <td>--><?php //history()?><!--</td>-->
+                            </tr>
+                        </table>
+                    </div>
+                    <div  class="col-md-6" style="background-color: white;width: 47%;margin-left: 40px;">
+                        <p style="    margin-top: 20px;
+    margin-left: 10px;">项目内容质量统计</p>
+                        <table class="table ">
+                            <tr>
+                                <th>创建词条浏览量</th>
+                                <th>发表评论</th>
+                            </tr>
+                            <tr>
+                                <td>最高浏览量：<?php  wikiviewmost()?></td>
+                                <td>发表评论总数：<?php  commentpost()?></td>
+                            </tr>
+                            <tr>
+                                <td>平均浏览量: <?php wikiviewaverage()?></td>
+                                <td>接收到的评论数: <?php getcomment()?></td>
+                            </tr>
+                        </table>
+                    </div>
+        </div>
+          <p    style="font-size: 18px;    margin: 8px;">问答</p>
+      <div class="row">
+
+          <div   class="col-md-6" style="background-color: white;width: 47%
+               ">
+              <div id="container1" style="min-width:400px;height:400px"></div>
           </div>
 
-      </div>
-
-      <p style="font-size: 18px;    margin: 8px;">学生活跃度</p>
-      <div class="row" style="    margin-top: 15px;">
-
-                  <div  class="col-md-6" style="background-color: white;;width: 47%">
+                  <div  class="col-md-6" style="background-color: white;margin-left: 40px;width: 47%">
                       <label for="start">起始日期：</label><input id="start" name="start" type="date" />
                        <div id="emailInfo">请输入起始日期,查询用户七天的活跃度变化</div>
                       <div id="container2" style="min-width:400px;height:400px;"></div>
@@ -1397,9 +821,100 @@ $(function () {
 
 
           </div>
+      <div class="row" style="    margin-top: 15px;">
+
+          <div   class="col-md-6" style="background-color: white;width: 47%">
+              <p style="    margin-top: 20px;
+    margin-left: 10px;">问答数量统计表</p>
+              <table class="table ">
+                  <tr>
+                      <th></th>
+                      <th>周</th>
+                      <th>月</th>
+                      <th>总计</th>
+                  </tr>
+                  <tr>
+                      <td>提问次数</td>
+                      <td><?php questiontimezhou()?></td>
+                      <td><?php questiontimemonth()?></td>
+                      <td><?php questionsum()?></td>
+                  </tr>
+                  <tr>
+                      <td>回答次数</td>
+                      <td><?php answertimezhou()?></td>
+                      <td><?php answertimemonth()?></td>
+                      <td><?php answersum()?></td>
+                  </tr>
+              </table>
+          </div>
+          <div  class="col-md-6" style="background-color: white;width: 47%;margin-left: 40px;">
+
+              <p style="    margin-top: 20px;
+    margin-left: 10px;">问答质量统计</p>
+              <table class="table ">
+                  <tr>
+                      <th>问题浏览量</th>
+                      <th>回答统计</th>
+                  </tr>
+                  <tr>
+                      <td>最高浏览量：<?php  questionviewmost()?></td>
+                      <td>被采纳个数：<?php  getchoice()?></td>
+                  </tr>
+                  <tr>
+                      <td>平均浏览量: <?php questionviewaverage()?></td>
+                      <td>收获赞同数: <?php getzan()?> </td>
+                  </tr>
+              </table>
+          </div>
+      </div>
+
+          <div class="row" style="    margin-top: 15px;">
+              <div  class="col-md-6" style="background-color: white;width: 47%;">
+                  <p>用户状况预测</p>
+                     <p>用户最近七天的活跃度为：<?php echo active_before_7()?></p>
+                  </br>
+                  <p>用户注册至今平均活跃度为：<?php echo active_history()?></p>
+                  </br>
+                  <p>据评估该用户处于第<?php echo live()?>梯队</p>
+                  </br>
+                  <p>据评估该用户目前状态:<?php mood()?></p>
+                  </br>
+                  <p>该用户最近浏览的页面有：<?php attention()?></p>
+                  <p>该用户停留时间较长的页面有：<?php stay()?></p>
+              </div>
+              <div  class="col-md-6" style="background-color: white;width: 47%;margin-left: 40px;">
+                  <p>用户状况统计</p>
+                  <select id="tidui" onchange="change()">
+                      <option  value="1">第一梯队</option>
+                      <option  value="2">第二梯队</option>
+                      <option  value="3">第三梯队</option>
+                      <option  value="4">第四梯队</option>
+                  </select>
+                  <select id="zhuangtai">
+                      <option  value="0">轻松</option>
+                      <option  value="1">繁忙</option>
+
+                  </select>
+                  <button id="button_tidui">查询</button><p>因为用户过多，故每次只随机显示20个</p>
+                  <div id="tiduinum">该类用户共有：</div>
+                  <div id="container_tidui" style="min-width:400px;height:400px;"></div>
+              </div>
+
+          </div>
+          <div class="row" style="    margin-top: 15px;">
+              <div  class="col-md-6" style="background-color: white;width: 47%;">
+                  <p>用户状况预测</p>
+
+              </div>
+              <div  class="col-md-6" style="background-color: white;width: 47%;margin-left: 40px;">
+                  <p>用户状况统计</p>
+
+              </div>
+
+          </div>
+          </div>
 
 
-    </div>
 
 
     </body>
